@@ -8,7 +8,7 @@ button1.onclick = () => alert("Cool! You can hear/understand a hummingbird and a
 // 2a
 const h3 = document.querySelector(`h3`);
 // 2b
-h3.addEventListener(`mouseleave`, () => {
+h3.addEventListener(`mouseenter`, () => {
     alert("OH NO! The squirrels are on to you. Now you have to leave this reality and move to a new one");
 });
 
@@ -26,21 +26,26 @@ form.addEventListener(`submit`, f => {
 });
 
 // 4a
-const darkMode = document.querySelector(`dm`);
+const darkMode = document.querySelector(`#dm`);
 // 4b
-for(dark of darkmode){
-    darkmode = dark.document.querySelector(`*`);
-};
+darkMode.addEventListener(`click`, () =>{
+    for (element of document.querySelectorAll(`*`)){
+        element.classList.toggle(`dark-mode`);
+    }
+});
 
 // 5a
 const reality = document.querySelector(`#reality`);
 // 5b
-reality.addEventListener(`ondblclick`, () => {
-    alert("You have successfully moved to another reality");
-    if (reality.addEventListener(`click`, () =>{
-        alert("OH NO! You can only move to a new another reality a couple times. You are stuck in this reality!");
-    if (reality.addEventListener(`click`, r  => {
-            r = document.getElementById(`#reality`).disabled;
-        }));
-    }));
-});
+let i = 1;
+function realityJump(){
+    if(i < 3){
+        alert("You have successfully moved to another reality");
+        i++;
+    } else {
+        alert("OH NO! You can only move to a new another reality a couple times. You are stuck in this reality!");  
+        reality.removeEventListener(`click`, realityJump);
+
+    }
+}
+reality.addEventListener(`click`, realityJump);
